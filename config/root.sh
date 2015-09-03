@@ -5,18 +5,18 @@ if [ -f ${SETUP_RES_CONTAINER}/.root_pw ]; then
 fi
 
 ## set user passord or auto-gen
-if [ ${ROOT_PW} ]; then
+if [ ${PASSROOT} ]; then
     # specified passowrd
-    echo "Specified root password: "${ROOT_PW}
+    echo "Specified root password: "${PASSROOT}
 else
     # auto gen
-    ROOT_PW=$(openssl rand 8 -base64)
-    echo "Auto generate root password: "$ROOT_PW
+    PASSROOT=$(openssl rand 8 -base64)
+    echo "Auto generate root password: "$PASSROOT
 fi
-echo "root:"$ROOT_PW | chpasswd
-echo $ROOT_PW >> ${SETUP_RES_CONTAINER}/.root_pw
+echo "root:"$PASSROOT| chpasswd
+echo $PASSROOT >> ${SETUP_RES_CONTAINER}/.root_pw
 
 echo "=================================="
-echo "root password = $ROOT_PW"
+echo "root password = $PASSROOT"
 echo "=================================="
 
